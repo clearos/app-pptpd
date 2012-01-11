@@ -1,6 +1,6 @@
 <?php
 
-$lang['pptpd_app_description'] = 'PPTP Server description... wordsmith please.';
+$lang['pptpd_app_description'] = 'PPTP VPN allows users to connect to your network using a VPN client common to most operating systems.  PPTP is easy and useful for road warriors but is considered less secure than other technologies like OpenVPN.';
 $lang['pptpd_app_name'] = 'PPTP Server';
 $lang['pptpd_dns_server'] = 'DNS Server'; 
 $lang['pptpd_dns_server_invalid'] = 'DNS server is invalid.';
