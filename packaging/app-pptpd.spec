@@ -1,10 +1,12 @@
 
 Name: app-pptpd
+Group: ClearOS/Apps
 Version: 6.2.0.beta3
 Release: 1%{dist}
 Summary: PPTP Server
 License: GPLv3
-Group: ClearOS/Apps
+Packager: ClearFoundation
+Vendor: ClearFoundation
 Source: %{name}-%{version}.tar.gz
 Buildarch: noarch
 Requires: %{name}-core = %{version}-%{release}
@@ -16,12 +18,12 @@ Requires: app-users
 Requires: app-network
 
 %description
-PPTP Server description... wordsmith please.
+PPTP VPN allows users to connect to your network using a VPN client common to most operating systems.  PPTP is easy and useful for road warriors but is considered less secure than other technologies like OpenVPN.
 
 %package core
 Summary: PPTP Server - APIs and install
-License: LGPLv3
 Group: ClearOS/Libraries
+License: LGPLv3
 Requires: app-base-core
 Requires: app-network-core
 Requires: app-pptpd-plugin-core
@@ -32,7 +34,7 @@ Requires: pptpd >= 1.3.4
 Requires: samba-winbind
 
 %description core
-PPTP Server description... wordsmith please.
+PPTP VPN allows users to connect to your network using a VPN client common to most operating systems.  PPTP is easy and useful for road warriors but is considered less secure than other technologies like OpenVPN.
 
 This package provides the core API and libraries.
 
@@ -48,6 +50,7 @@ install -d -m 0755 %{buildroot}/etc/clearos/pptpd.d
 install -d -m 0755 %{buildroot}/var/clearos/pptpd
 install -d -m 0755 %{buildroot}/var/clearos/pptpd/backup
 install -D -m 0644 packaging/authorize %{buildroot}/etc/clearos/pptpd.d/authorize
+install -D -m 0644 packaging/filewatch-pptpd-network.conf %{buildroot}/etc/clearsync.d/filewatch-pptpd-network.conf
 install -D -m 0644 packaging/pptpd.php %{buildroot}/var/clearos/base/daemon/pptpd.php
 
 %post
@@ -95,4 +98,5 @@ exit 0
 /usr/clearos/apps/pptpd/language
 /usr/clearos/apps/pptpd/libraries
 %config(noreplace) /etc/clearos/pptpd.d/authorize
+/etc/clearsync.d/filewatch-pptpd-network.conf
 /var/clearos/base/daemon/pptpd.php
