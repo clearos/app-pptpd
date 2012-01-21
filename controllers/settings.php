@@ -55,6 +55,61 @@ class Settings extends ClearOS_Controller
 
     function index()
     {
+        $this->_common('view');
+    }
+
+    /**
+     * Edit view.
+     *
+     * @return view
+     */
+
+    function edit()
+    {
+        $this->_common('edit');
+    }
+
+    /**
+     * Disables auto configuration.
+     *
+     * @return redirect
+     */
+
+    function disable_auto_configure()
+    {
+        // Load dependencies
+        //------------------
+
+        $this->load->library('pptpd/PPTPd');
+
+        // Disable and redirect
+        //---------------------
+
+        $this->pptpd->set_auto_configure_state(FALSE);
+        redirect('/pptpd/settings/edit');
+    }
+
+    /**
+     * View view.
+     *
+     * @return view
+     */
+
+    function view()
+    {
+        $this->_common('view');
+    }
+
+    /**
+     * Common view/edit handler.
+     *
+     * @param string $form_type form type
+     *
+     * @return view
+     */
+
+    function _common($form_type)
+    {
         // Load dependencies
         //------------------
 
@@ -92,10 +147,12 @@ class Settings extends ClearOS_Controller
         //---------------
 
         try {
+            $data['form_type'] = $form_type;
             $data['local_ip'] = $this->pptpd->get_local_ip();
             $data['remote_ip'] = $this->pptpd->get_remote_ip();
             $data['wins'] = $this->pptpd->get_wins_server();
             $data['dns'] = $this->pptpd->get_dns_server();
+            $data['auto_configure'] = $this->pptpd->get_auto_configure_state();
         } catch (Exception $e) {
             $this->page->view_exception($e);
             return;

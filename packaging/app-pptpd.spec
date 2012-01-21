@@ -27,6 +27,7 @@ License: LGPLv3
 Requires: app-base-core
 Requires: app-network-core
 Requires: app-pptpd-plugin-core
+Requires: app-samba-core
 Requires: app-samba-extension-core
 Requires: app-incoming-firewall-core
 Requires: csplugin-routewatch
@@ -51,6 +52,7 @@ install -d -m 0755 %{buildroot}/var/clearos/pptpd
 install -d -m 0755 %{buildroot}/var/clearos/pptpd/backup
 install -D -m 0644 packaging/authorize %{buildroot}/etc/clearos/pptpd.d/authorize
 install -D -m 0644 packaging/filewatch-pptpd-network.conf %{buildroot}/etc/clearsync.d/filewatch-pptpd-network.conf
+install -D -m 0644 packaging/pptpd.conf %{buildroot}/etc/clearos/pptpd.conf
 install -D -m 0644 packaging/pptpd.php %{buildroot}/var/clearos/base/daemon/pptpd.php
 
 %post
@@ -99,4 +101,5 @@ exit 0
 /usr/clearos/apps/pptpd/libraries
 %config(noreplace) /etc/clearos/pptpd.d/authorize
 /etc/clearsync.d/filewatch-pptpd-network.conf
+%config(noreplace) /etc/clearos/pptpd.conf
 /var/clearos/base/daemon/pptpd.php

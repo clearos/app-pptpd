@@ -43,6 +43,7 @@ $app['requires'] = array(
 $app['core_requires'] = array(
     'app-network-core',
     'app-pptpd-plugin-core',
+    'app-samba-core',
     'app-samba-extension-core',
     'app-incoming-firewall-core',
     'csplugin-routewatch',
@@ -58,8 +59,17 @@ $app['core_directory_manifest'] = array(
 
 $app['core_file_manifest'] = array(
     'pptpd.php'=> array('target' => '/var/clearos/base/daemon/pptpd.php'),
+    'filewatch-pptpd-network.conf'=> array('target' => '/etc/clearsync.d/filewatch-pptpd-network.conf'),
     'authorize' => array(
         'target' => '/etc/clearos/pptpd.d/authorize',
+        'mode' => '0644',
+        'owner' => 'root',
+        'group' => 'root',
+        'config' => TRUE,
+        'config_params' => 'noreplace',
+    ),
+    'pptpd.conf' => array(
+        'target' => '/etc/clearos/pptpd.conf',
         'mode' => '0644',
         'owner' => 'root',
         'group' => 'root',

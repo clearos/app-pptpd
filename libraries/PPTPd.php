@@ -60,22 +60,27 @@ use \clearos\apps\base\File as File;
 use \clearos\apps\network\Iface as Iface;
 use \clearos\apps\network\Iface_Manager as Iface_Manager;
 use \clearos\apps\network\Network_Utils as Network_Utils;
+use \clearos\apps\samba\Samba as Samba;
 
 clearos_load_library('base/Daemon');
 clearos_load_library('base/File');
-// clearos_load_library('network/Iface');
-// clearos_load_library('network/Iface_Manager');
+clearos_load_library('network/Iface');
+clearos_load_library('network/Iface_Manager');
 clearos_load_library('network/Network_Utils');
+clearos_load_library('samba/Samba');
 
 // Exceptions
 //-----------
 
+use \Exception as Exception;
 use \clearos\apps\base\Engine_Exception as Engine_Exception;
 use \clearos\apps\base\File_No_Match_Exception as File_No_Match_Exception;
+use \clearos\apps\base\File_Not_Found_Exception as File_Not_Found_Exception;
 use \clearos\apps\base\Validation_Exception as Validation_Exception;
 
 clearos_load_library('base/Engine_Exception');
 clearos_load_library('base/File_No_Match_Exception');
+clearos_load_library('base/File_Not_Found_Exception');
 clearos_load_library('base/Validation_Exception');
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -100,6 +105,7 @@ class PPTPd extends Daemon
     // C O N S T A N T S
     ///////////////////////////////////////////////////////////////////////////////
 
+    const FILE_APP_CONFIG = '/etc/clearos/pptpd.conf';
     const FILE_CONFIG = '/etc/pptpd.conf';
     const FILE_OPTIONS = '/etc/ppp/options.pptpd';
     const FILE_STATS = '/proc/net/dev';
@@ -119,6 +125,72 @@ class PPTPd extends Daemon
         clearos_profile(__METHOD__, __LINE__);
 
         parent::__construct('pptpd');
+    }
+
+    /**
+     * Auto configures PPTP.
+     *
+     * @return array list of active PPTP connections
+     * @throws Engine_Exception
+     */
+
+    public function auto_configure()
+    {
+        clearos_profile(__METHOD__, __LINE__);
+
+        if (! $this->get_auto_configure_state())
+            return;
+            
+        $ifaces = new Iface_Manager();
+
+        // Local / Remote IP configuration
+        //--------------------------------
+
+        $lans = $ifaces->get_lan_networks();
+
+        if (! empty($lans[0])) {
+            list($ip, $netmask) = preg_split('/\//', $lans[0]);
+            $base_ip = preg_replace('/\.[0-9]+$/', '', $ip);
+
+
+            $current_local_ip = $this->get_local_ip();
+
+            if ($current_local_ip == '192.168.1.80-89') {
+                $this->set_local_ip($base_ip . '.80-89');
+                $this->set_remote_ip($base_ip . '.90-99');
+            }
+        }
+
+        // DNS server configuration
+        //-------------------------
+
+        $ips = $ifaces->get_lan_ips();
+
+        if ((!empty($ips[0])) && clearos_app_installed('dns'))
+            $this->set_dns_server($ips[0]);
+        else
+            $this->set_dns_server('');
+
+        // WINS server configuration
+        //--------------------------
+
+        $samba = new Samba();
+
+        $is_wins = $samba->get_wins_support();
+        $wins_server = $samba->get_wins_server();
+
+        if ($is_wins && (!empty($ips[0]))) {
+            $this->set_wins_server($ips[0]);
+        } else if (!empty($wins_server)) {
+            $this->set_wins_server($wins_server);
+        } else {
+            $this->set_wins_server('');
+        }
+
+        // Restart
+        //--------
+
+        $this->reset();
     }
 
     /**
@@ -161,6 +233,33 @@ class PPTPd extends Daemon
         }
 
         return $ethinfolist;
+    }
+
+    /**
+     * Returns auto-configure state.
+     *
+     * @return boolean state of auto-configure mode
+     */
+
+    public function get_auto_configure_state()
+    {
+        clearos_profile(__METHOD__, __LINE__);
+
+        try {
+            $file = new File(self::FILE_APP_CONFIG);
+            $value = $file->lookup_value("/^auto_configure\s*=\s*/i");
+        } catch (File_Not_Found_Exception $e) {
+            return FALSE;
+        } catch (File_No_Match_Exception $e) {
+            return FALSE;
+        } catch (Exception $e) {
+            throw new Engine_Exception($e->get_message());
+        }
+
+        if (preg_match('/yes/i', $value))
+            return TRUE;
+        else
+            return FALSE;
     }
 
     /**
@@ -247,6 +346,30 @@ class PPTPd extends Daemon
         clearos_profile(__METHOD__, __LINE__);
 
         return $this->_get_options_parameter('ms-wins');
+    }
+
+    /**
+     * Returns auto-configure state.
+     *
+     * @param boolean $state state
+     *
+     * @return boolean state of auto-configure mode
+     */
+
+    public function set_auto_configure_state($state)
+    {
+        clearos_profile(__METHOD__, __LINE__);
+
+        $config_value = ($state) ? 'yes' : 'no';
+
+        $file = new File(self::FILE_APP_CONFIG);
+
+        if ($file->exists())
+            $file->delete();
+
+        $file->create('root', 'root', '0644');
+
+        $file->add_lines("auto_configure = $config_value\n");
     }
 
     /**
@@ -370,7 +493,10 @@ class PPTPd extends Daemon
     {
         clearos_profile(__METHOD__, __LINE__);
 
-        if (($server !== '') && (! Network_Utils::is_valid_ip($server)))
+        if (empty($server))
+            return;
+
+        if (! Network_Utils::is_valid_ip($server))
             return lang('pptpd_dns_server_invalid');
     }
 

@@ -1,13 +1,14 @@
+#!/usr/clearos/sandbox/usr/bin/php
 <?php
 
 /**
- * PPTP server view.
+ * Auto configures PPTP with sane defaults.
  *
- * @category   ClearOS
+ * @category   Apps
  * @package    PPTPd
- * @subpackage Views
+ * @subpackage Scripts
  * @author     ClearFoundation <developer@clearfoundation.com>
- * @copyright  2011 ClearFoundation
+ * @copyright  2012 ClearFoundation
  * @license    http://www.gnu.org/copyleft/gpl.html GNU General Public License version 3 or later
  * @link       http://www.clearfoundation.com/docs/developer/apps/pptpd/
  */
@@ -25,62 +26,34 @@
 // GNU General Public License for more details.
 //
 // You should have received a copy of the GNU General Public License
-// along with this program.  If not, see <http://www.gnu.org/licenses/>.  
-//  
+// along with this program.  If not, see <http://www.gnu.org/licenses/>.
+//
 ///////////////////////////////////////////////////////////////////////////////
 
 ///////////////////////////////////////////////////////////////////////////////
-// Load dependencies
+// B O O T S T R A P
 ///////////////////////////////////////////////////////////////////////////////
 
-$this->lang->load('base');
-$this->lang->load('pptpd');
+$bootstrap = getenv('CLEAROS_BOOTSTRAP') ? getenv('CLEAROS_BOOTSTRAP') : '/usr/clearos/framework/shared';
+require_once $bootstrap . '/bootstrap.php';
 
 ///////////////////////////////////////////////////////////////////////////////
-// Form handler
+// T R A N S L A T I O N S
 ///////////////////////////////////////////////////////////////////////////////
 
-if ($auto_configure) {
-    $read_only = TRUE;
-    $buttons = array();
-} else if ($form_type === 'edit') {
-    $read_only = FALSE;
-    $buttons = array(
-        form_submit_update('submit'),
-        anchor_cancel('/app/pptpd/settings'),
-    );
-} else {
-    $read_only = TRUE;
-    $buttons = array(
-        anchor_edit('/app/pptpd/settings/edit')
-    );
-}
+clearos_load_language('pptpd');
 
 ///////////////////////////////////////////////////////////////////////////////
-// Auto configure help
+// D E P E N D E N C I E S
 ///////////////////////////////////////////////////////////////////////////////
 
-if ($auto_configure) {
-    echo infobox_highlight(
-        lang('pptpd_auto_configure_title'),
-        lang('pptpd_auto_configure_help') . '<br>' .
-        "<p align='center'>" . anchor_custom('/app/pptpd/settings/disable_auto_configure', lang('base_disable_auto_configuration')) . "</p>"
-    );
-}
+use \clearos\apps\pptpd\PPTPd as PPTPd;
+
+clearos_load_library('pptpd/PPTPd');
 
 ///////////////////////////////////////////////////////////////////////////////
-// Form
+// M A I N
 ///////////////////////////////////////////////////////////////////////////////
 
-echo form_open('pptpd/settings');
-echo form_header(lang('base_settings'));
-
-echo field_input('local_ip', $local_ip, lang('pptpd_local_ip_range'), $read_only);
-echo field_input('remote_ip', $remote_ip, lang('pptpd_remote_ip_range'), $read_only);
-echo field_input('dns', $dns, lang('pptpd_dns_server'), $read_only);
-echo field_input('wins', $wins, lang('pptpd_wins_server'), $read_only);
-
-echo field_button_set($buttons);
-
-echo form_footer();
-echo form_close();
+$pptpd = new PPTPd();
+$pptpd->auto_configure();
