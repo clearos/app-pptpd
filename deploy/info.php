@@ -27,6 +27,7 @@ $app['subcategory'] = lang('base_subcategory_vpn');
 
 $app['controllers']['pptpd']['title'] = $app['name'];
 $app['controllers']['settings']['title'] = lang('base_settings');
+$app['controllers']['policy']['title'] = lang('base_app_policy');
 
 /////////////////////////////////////////////////////////////////////////////
 // Packaging
