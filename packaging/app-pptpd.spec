@@ -29,7 +29,7 @@ Requires: app-pptpd-plugin-core
 Requires: app-samba-core
 Requires: app-samba-extension-core
 Requires: app-incoming-firewall-core
-Requires: csplugin-routewatch
+Requires: csplugin-filewatch
 Requires: pptpd >= 1.3.4
 Requires: samba-winbind
 

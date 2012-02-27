@@ -47,7 +47,7 @@ $app['core_requires'] = array(
     'app-samba-core',
     'app-samba-extension-core',
     'app-incoming-firewall-core',
-    'csplugin-routewatch',
+    'csplugin-filewatch',
     'pptpd >= 1.3.4',
     'samba-winbind',
 );
