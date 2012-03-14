@@ -130,7 +130,7 @@ class PPTPd extends Daemon
     /**
      * Auto configures PPTP.
      *
-     * @return array list of active PPTP connections
+     * @return void
      * @throws Engine_Exception
      */
 
@@ -146,7 +146,7 @@ class PPTPd extends Daemon
         // Local / Remote IP configuration
         //--------------------------------
 
-        $lans = $ifaces->get_lan_networks();
+        $lans = $ifaces->get_most_trusted_networks();
 
         if (! empty($lans[0])) {
             list($ip, $netmask) = preg_split('/\//', $lans[0]);
@@ -164,7 +164,7 @@ class PPTPd extends Daemon
         // DNS server configuration
         //-------------------------
 
-        $ips = $ifaces->get_lan_ips();
+        $ips = $ifaces->get_most_trusted_ips();
 
         if ((!empty($ips[0])) && clearos_app_installed('dns'))
             $this->set_dns_server($ips[0]);
@@ -349,11 +349,12 @@ class PPTPd extends Daemon
     }
 
     /**
-     * Returns auto-configure state.
+     * Sets auto-configure state.
      *
      * @param boolean $state state
      *
-     * @return boolean state of auto-configure mode
+     * @return void
+     * @throws Engine_Exception, Validation_Exception
      */
 
     public function set_auto_configure_state($state)
