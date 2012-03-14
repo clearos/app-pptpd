@@ -1,7 +1,7 @@
 
 Name: app-pptpd
 Epoch: 1
-Version: 1.0.4
+Version: 1.0.8
 Release: 1%{dist}
 Summary: PPTP Server
 License: GPLv3
@@ -24,7 +24,7 @@ Summary: PPTP Server - APIs and install
 License: LGPLv3
 Group: ClearOS/Libraries
 Requires: app-base-core
-Requires: app-network-core
+Requires: app-network-core >= 1:1.0.7
 Requires: app-pptpd-plugin-core
 Requires: app-samba-core
 Requires: app-samba-extension-core
