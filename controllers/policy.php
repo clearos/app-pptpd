@@ -61,7 +61,7 @@ require clearos_app_base('groups') . '/controllers/groups.php';
 class Policy extends Groups
 {
     /**
-     * Web Proxy policy constructor.
+     * PPTP Server policy constructor.
      */
 
     function __construct()
