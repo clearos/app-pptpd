@@ -5,7 +5,7 @@
 /////////////////////////////////////////////////////////////////////////////
 
 $app['basename'] = 'pptpd';
-$app['version'] = '1.0.8';
+$app['version'] = '1.0.9';
 $app['release'] = '1';
 $app['vendor'] = 'ClearFoundation';
 $app['packager'] = 'ClearFoundation';
@@ -49,6 +49,7 @@ $app['core_requires'] = array(
     'app-incoming-firewall-core',
     'csplugin-filewatch',
     'pptpd >= 1.3.4',
+    'ppp >= 2.4.5-5.v6',
     'samba-winbind',
 );
 

@@ -31,3 +31,18 @@ if [ -z "$CHECK" ]; then
 
     cp /usr/clearos/apps/pptpd/deploy/ppp-pam /etc/pam.d/ppp
 fi
+
+# FIXME: Beta only upgrade issue - remove after final
+#----------------------------------------------------
+
+CHECK=`grep "devname pptp" /etc/ppp/options.pptpd 2>/dev/null`
+
+if [ -z "$CHECK" ]; then
+    logger -p local6.notice -t installer "app-pptpd-core - upgrading default beta configuration"
+
+    if [ -e /etc/ppp/options.pptpd ]; then
+        cp /etc/ppp/options.pptpd /var/clearos/pptpd/backup/options.pptpd.$TIMESTAMP
+    fi
+
+    cp /usr/clearos/apps/pptpd/deploy/options.pptpd /etc/ppp/options.pptpd
+fi

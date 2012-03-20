@@ -1,7 +1,7 @@
 
 Name: app-pptpd
 Epoch: 1
-Version: 1.0.8
+Version: 1.0.9
 Release: 1%{dist}
 Summary: PPTP Server
 License: GPLv3
@@ -31,6 +31,7 @@ Requires: app-samba-extension-core
 Requires: app-incoming-firewall-core
 Requires: csplugin-filewatch
 Requires: pptpd >= 1.3.4
+Requires: ppp >= 2.4.5-5.v6
 Requires: samba-winbind
 
 %description core

@@ -1,4 +1,6 @@
 lock
+devname pptp
+name pptp-vpn
 auth
 proxyarp
 asyncmap 0
