@@ -35,3 +35,8 @@ chkconfig winbind on
 
 logger -p local6.notice -t installer "app-pptpd-core - starting Winbind server"
 service winbind start
+
+# Reload clearsyncd
+#------------------
+
+/sbin/service clearsyncd condrestart >/dev/null 2>&1
