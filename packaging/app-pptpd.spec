@@ -1,7 +1,7 @@
 
 Name: app-pptpd
 Epoch: 1
-Version: 1.0.10
+Version: 1.1.0
 Release: 1%{dist}
 Summary: PPTP Server
 License: GPLv3
@@ -20,7 +20,7 @@ Requires: app-network
 PPTP VPN allows users to connect to your network using a VPN client common to most operating systems.  PPTP is easy and useful for road warriors but is considered less secure than other technologies like OpenVPN.
 
 %package core
-Summary: PPTP Server - APIs and install
+Summary: PPTP Server - Core
 License: LGPLv3
 Group: ClearOS/Libraries
 Requires: app-base-core
