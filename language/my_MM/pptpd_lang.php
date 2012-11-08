@@ -3,13 +3,13 @@
 // http://www.clearfoundation.com/docs/developer/translations/
 
 $lang['pptpd_app_description'] = 'PPTP VPN allows users to connect to your network using a VPN client common to most operating systems.  PPTP is easy and useful for road warriors but is considered less secure than other technologies like OpenVPN.';
-$lang['pptpd_app_name'] = 'Serwer PPTP';
+$lang['pptpd_app_name'] = 'PPTP Server';
 $lang['pptpd_auto_configure_help'] = 'The PPTP server is currently in auto-configuration mode.  If you change your network settings, the PPTP server will intelligently make the necessary changes to its settings.  If you would like to disable auto-configuration, please click on the following button.';
-$lang['pptpd_dns_server'] = 'Serwer DNS';
-$lang['pptpd_dns_server_invalid'] = 'Podany serwer DNS jest nieprawidłowy.';
-$lang['pptpd_ip_range_invalid'] = 'Podany zakres adresów IP jest nieprawidłowy.';
-$lang['pptpd_local_ip_range'] = 'Zakres lokalnych adresów IP';
-$lang['pptpd_pptp_server'] = 'Serwer PPTP';
-$lang['pptpd_remote_ip_range'] = 'Zakres zdalnych adresów IP';
-$lang['pptpd_wins_server'] = 'Serwer WINS';
-$lang['pptpd_wins_server_invalid'] = 'Podany serwer WINS jest nieprawidłowy.';
+$lang['pptpd_dns_server'] = 'DNS Server';
+$lang['pptpd_dns_server_invalid'] = 'DNS server မွားယြင္းေနသည္။';
+$lang['pptpd_ip_range_invalid'] = 'IP အစီအစဥ္ မွားယြင္းေနသည္။';
+$lang['pptpd_local_ip_range'] = 'Local IP Range';
+$lang['pptpd_pptp_server'] = 'PPTP Server';
+$lang['pptpd_remote_ip_range'] = 'Remote IP Range';
+$lang['pptpd_wins_server'] = 'WINS Server';
+$lang['pptpd_wins_server_invalid'] = 'WINS Server မွားယြင္းေနသည္။';
