@@ -24,7 +24,7 @@ Summary: PPTP Server - Core
 License: LGPLv3
 Group: ClearOS/Libraries
 Requires: app-base-core
-Requires: app-network-core >= 1:1.0.7
+Requires: app-network-core >= 1:1.4.5
 Requires: app-pptpd-plugin-core
 Requires: app-samba-core
 Requires: app-samba-extension-core

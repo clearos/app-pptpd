@@ -1,13 +1,13 @@
 <?php
 
 /**
- * PPTPd controller.
+ * PPTP Server network check controller.
  *
  * @category   Apps
  * @package    PPTPd
  * @subpackage Controllers
  * @author     ClearFoundation <developer@clearfoundation.com>
- * @copyright  2011 ClearFoundation
+ * @copyright  2012 ClearFoundation
  * @license    http://www.gnu.org/copyleft/gpl.html GNU General Public License version 3 or later
  * @link       http://www.clearfoundation.com/docs/developer/apps/pptpd/
  */
@@ -30,41 +30,42 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 ///////////////////////////////////////////////////////////////////////////////
+// B O O T S T R A P
+///////////////////////////////////////////////////////////////////////////////
+
+$bootstrap = getenv('CLEAROS_BOOTSTRAP') ? getenv('CLEAROS_BOOTSTRAP') : '/usr/clearos/framework/shared';
+require_once $bootstrap . '/bootstrap.php';
+
+///////////////////////////////////////////////////////////////////////////////
+// D E P E N D E N C I E S
+///////////////////////////////////////////////////////////////////////////////
+
+require clearos_app_base('network') . '/controllers/network_check.php';
+
+///////////////////////////////////////////////////////////////////////////////
 // C L A S S
 ///////////////////////////////////////////////////////////////////////////////
 
 /**
- * PPTPd controller.
+ * PPTP Server network check controller.
  *
  * @category   Apps
  * @package    PPTPd
  * @subpackage Controllers
  * @author     ClearFoundation <developer@clearfoundation.com>
- * @copyright  2011 ClearFoundation
+ * @copyright  2012 ClearFoundation
  * @license    http://www.gnu.org/copyleft/gpl.html GNU General Public License version 3 or later
  * @link       http://www.clearfoundation.com/docs/developer/apps/pptpd/
  */
 
-class PPTPd extends ClearOS_Controller
+class Network extends Network_Check
 {
     /**
-     * PPTPd server summary view.
-     *
-     * @return view
+     * Network check constructor.
      */
 
-    function index()
+    function __construct()
     {
-        // Load libraries
-        //---------------
-
-        $this->lang->load('pptpd');
-
-        // Load views
-        //-----------
-
-        $views = array('pptpd/server', 'pptpd/network', 'pptpd/settings', 'pptpd/policy');
-
-        $this->page->view_forms($views, lang('pptpd_app_name'));
+        parent::__construct('pptpd', 'PPTP');
     }
 }

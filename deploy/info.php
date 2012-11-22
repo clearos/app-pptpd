@@ -42,7 +42,7 @@ $app['requires'] = array(
 );
 
 $app['core_requires'] = array(
-    'app-network-core >= 1:1.0.7',
+    'app-network-core >= 1:1.4.5',
     'app-pptpd-plugin-core',
     'app-samba-core',
     'app-samba-extension-core',
