@@ -1,7 +1,7 @@
 
 Name: app-pptpd
 Epoch: 1
-Version: 1.1.0
+Version: 1.4.5
 Release: 1%{dist}
 Summary: PPTP Server
 License: GPLv3
@@ -26,13 +26,12 @@ Group: ClearOS/Libraries
 Requires: app-base-core
 Requires: app-network-core >= 1:1.4.5
 Requires: app-pptpd-plugin-core
-Requires: app-samba-core
-Requires: app-samba-extension-core
+Requires: app-samba-common-core
 Requires: app-incoming-firewall-core
 Requires: csplugin-filewatch
 Requires: pptpd >= 1.3.4
 Requires: ppp >= 2.4.5-5.v6
-Requires: samba-winbind
+Requires: system-windows-driver
 
 %description core
 PPTP VPN allows users to connect to your network using a VPN client common to most operating systems.  PPTP is easy and useful for road warriors but is considered less secure than other technologies like OpenVPN.

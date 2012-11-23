@@ -5,7 +5,7 @@
 /////////////////////////////////////////////////////////////////////////////
 
 $app['basename'] = 'pptpd';
-$app['version'] = '1.1.0';
+$app['version'] = '1.4.5';
 $app['release'] = '1';
 $app['vendor'] = 'ClearFoundation';
 $app['packager'] = 'ClearFoundation';
@@ -44,13 +44,12 @@ $app['requires'] = array(
 $app['core_requires'] = array(
     'app-network-core >= 1:1.4.5',
     'app-pptpd-plugin-core',
-    'app-samba-core',
-    'app-samba-extension-core',
+    'app-samba-common-core',
     'app-incoming-firewall-core',
     'csplugin-filewatch',
     'pptpd >= 1.3.4',
     'ppp >= 2.4.5-5.v6',
-    'samba-winbind',
+    'system-windows-driver',
 );
 
 $app['core_directory_manifest'] = array(

@@ -60,14 +60,14 @@ use \clearos\apps\base\File as File;
 use \clearos\apps\network\Iface as Iface;
 use \clearos\apps\network\Iface_Manager as Iface_Manager;
 use \clearos\apps\network\Network_Utils as Network_Utils;
-use \clearos\apps\samba\Samba as Samba;
+use \clearos\apps\samba_common\Samba as Samba;
 
 clearos_load_library('base/Daemon');
 clearos_load_library('base/File');
 clearos_load_library('network/Iface');
 clearos_load_library('network/Iface_Manager');
 clearos_load_library('network/Network_Utils');
-clearos_load_library('samba/Samba');
+clearos_load_library('samba_common/Samba');
 
 // Exceptions
 //-----------
