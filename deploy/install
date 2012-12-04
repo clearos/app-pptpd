@@ -30,11 +30,13 @@ chkconfig pptpd on
 logger -p local6.notice -t installer "app-pptpd-core - starting PPTP server"
 service pptpd start
 
-logger -p local6.notice -t installer "app-pptpd-core - enabling Winbind server"
-chkconfig winbind on
+if [ -x /etc/init.d/winbind ]; then
+    logger -p local6.notice -t installer "app-pptpd-core - enabling Winbind server"
+    chkconfig winbind on
 
-logger -p local6.notice -t installer "app-pptpd-core - starting Winbind server"
-service winbind start
+    logger -p local6.notice -t installer "app-pptpd-core - starting Winbind server"
+    service winbind start
+fi
 
 # Reload clearsyncd
 #------------------
