@@ -4,7 +4,7 @@
 
 $lang['pptpd_app_description'] = 'PPTP VPN allows users to connect to your network using a VPN client common to most operating systems.  PPTP is easy and useful for road warriors but is considered less secure than other technologies like OpenVPN.';
 $lang['pptpd_app_name'] = 'PPTP 服务器';
-$lang['pptpd_auto_configure_help'] = 'The PPTP server is currently in auto-configuration mode.  If you change your network settings, the PPTP server will intelligently make the necessary changes to its settings.  If you would like to disable auto-configuration, please click on the following button.';
+$lang['pptpd_auto_configure_help'] = 'PPTP服务器是目前在自动配置模式。如果您更改网络设置，PPTP服务器将自动进行必要的更改其设置。如果你想禁用自动配置，请点击下面的按钮。';
 $lang['pptpd_dns_server'] = 'DNS 服务器';
 $lang['pptpd_dns_server_invalid'] = 'DNS服务器无效';
 $lang['pptpd_ip_range_invalid'] = 'IP 范围无效';
