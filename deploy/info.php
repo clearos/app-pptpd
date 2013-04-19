@@ -83,5 +83,4 @@ $app['delete_dependency'] = array(
     'app-pptpd-core',
     'app-pptpd-plugin-core',
     'pptpd',
-    'ppp'
 );
