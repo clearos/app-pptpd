@@ -3,9 +3,9 @@
 /**
  * PPTP server view.
  *
- * @category   ClearOS
- * @package    PPTPd
- * @subpackage Views
+ * @category   apps
+ * @package    pptpd
+ * @subpackage views
  * @author     ClearFoundation <developer@clearfoundation.com>
  * @copyright  2011 ClearFoundation
  * @license    http://www.gnu.org/copyleft/gpl.html GNU General Public License version 3 or later

@@ -3,9 +3,9 @@
 /**
  * PPTP Server policy controller
  *
- * @category   Apps
- * @package    PPTPd
- * @subpackage Controllers
+ * @category   apps
+ * @package    pptpd
+ * @subpackage controllers
  * @author     ClearFoundation <developer@clearfoundation.com>
  * @copyright  2011 ClearFoundation
  * @license    http://www.gnu.org/copyleft/gpl.html GNU General Public License version 3 or later
@@ -49,9 +49,9 @@ require clearos_app_base('groups') . '/controllers/groups.php';
 /**
  * PPTP Server policy controller
  *
- * @category   Apps
- * @package    PPTPd
- * @subpackage Controllers
+ * @category   apps
+ * @package    pptpd
+ * @subpackage controllers
  * @author     ClearFoundation <developer@clearfoundation.com>
  * @copyright  2011 ClearFoundation
  * @license    http://www.gnu.org/copyleft/gpl.html GNU General Public License version 3 or later
