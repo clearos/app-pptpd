@@ -7,7 +7,7 @@
  * @package    pptpd
  * @subpackage libraries
  * @author     ClearFoundation <developer@clearfoundation.com>
- * @copyright  2003-2011 ClearFoundation
+ * @copyright  2003-2013 ClearFoundation
  * @license    http://www.gnu.org/copyleft/lgpl.html GNU Lesser General Public License version 3 or later
  * @link       http://www.clearfoundation.com/docs/developer/apps/pptpd/
  */
@@ -94,7 +94,7 @@ clearos_load_library('base/Validation_Exception');
  * @package    pptpd
  * @subpackage libraries
  * @author     ClearFoundation <developer@clearfoundation.com>
- * @copyright  2003-2011 ClearFoundation
+ * @copyright  2003-2013 ClearFoundation
  * @license    http://www.gnu.org/copyleft/lgpl.html GNU Lesser General Public License version 3 or later
  * @link       http://www.clearfoundation.com/docs/developer/apps/pptpd/
  */
@@ -152,13 +152,17 @@ class PPTPd extends Daemon
             list($ip, $netmask) = preg_split('/\//', $lans[0]);
             $base_ip = preg_replace('/\.[0-9]+$/', '', $ip);
 
-
-            $current_local_ip = $this->get_local_ip();
-
-            if ($current_local_ip == '192.168.1.80-89') {
-                $this->set_local_ip($base_ip . '.80-89');
-                $this->set_remote_ip($base_ip . '.90-99');
+            if (!Network_Utils::is_private_ip($base_ip . '.1')) {
+                 $base_ip = '192.168.222';
+                 $local_range = '1-99';
+                 $remote_range = '100-199';
+            } else {
+                 $local_range = '80-89';
+                 $remote_range = '90-99';
             }
+
+            $this->set_local_ip($base_ip . '.' . $local_range);
+            $this->set_remote_ip($base_ip . '.' . $remote_range);
         }
 
         // DNS server configuration
