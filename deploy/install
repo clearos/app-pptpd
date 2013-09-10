@@ -37,8 +37,3 @@ if [ -x /etc/init.d/winbind ]; then
     logger -p local6.notice -t installer "app-pptpd-core - starting Winbind server"
     service winbind start
 fi
-
-# Reload clearsyncd
-#------------------
-
-/sbin/service clearsyncd condrestart >/dev/null 2>&1
