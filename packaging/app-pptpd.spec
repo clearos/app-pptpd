@@ -27,7 +27,6 @@ Requires: app-base-core
 Requires: app-network-core >= 1:1.4.5
 Requires: app-pptpd-plugin-core
 Requires: app-samba-common-core
-Requires: app-incoming-firewall-core
 Requires: csplugin-filewatch
 Requires: pptpd >= 1.3.4
 Requires: ppp >= 2.4.5-5.v6
@@ -90,7 +89,6 @@ exit 0
 %files core
 %defattr(-,root,root)
 %exclude /usr/clearos/apps/pptpd/packaging
-%exclude /usr/clearos/apps/pptpd/tests
 %dir /usr/clearos/apps/pptpd
 %dir /etc/clearos/pptpd.d
 %dir /var/clearos/pptpd

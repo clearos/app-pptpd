@@ -45,7 +45,6 @@ $app['core_requires'] = array(
     'app-network-core >= 1:1.4.5',
     'app-pptpd-plugin-core',
     'app-samba-common-core',
-    'app-incoming-firewall-core',
     'csplugin-filewatch',
     'pptpd >= 1.3.4',
     'ppp >= 2.4.5-5.v6',
