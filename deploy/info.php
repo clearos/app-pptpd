@@ -5,7 +5,7 @@
 /////////////////////////////////////////////////////////////////////////////
 
 $app['basename'] = 'pptpd';
-$app['version'] = '1.5.5';
+$app['version'] = '1.6.0';
 $app['release'] = '1';
 $app['vendor'] = 'ClearFoundation';
 $app['packager'] = 'ClearFoundation';
@@ -42,10 +42,10 @@ $app['requires'] = array(
 );
 
 $app['core_requires'] = array(
+    'app-events-core',
     'app-network-core >= 1:1.4.5',
     'app-pptpd-plugin-core',
     'app-samba-common-core',
-    'csplugin-filewatch',
     'pptpd >= 1.3.4',
     'ppp >= 2.4.5-5.v6',
     'system-windows-driver',
@@ -59,7 +59,6 @@ $app['core_directory_manifest'] = array(
 
 $app['core_file_manifest'] = array(
     'pptpd.php'=> array('target' => '/var/clearos/base/daemon/pptpd.php'),
-    'filewatch-pptpd-network.conf'=> array('target' => '/etc/clearsync.d/filewatch-pptpd-network.conf'),
     'authorize' => array(
         'target' => '/etc/clearos/pptpd.d/authorize',
         'mode' => '0644',
@@ -75,6 +74,18 @@ $app['core_file_manifest'] = array(
         'group' => 'root',
         'config' => TRUE,
         'config_params' => 'noreplace',
+    ),
+    'network-configuration-event'=> array(
+        'target' => '/var/clearos/events/network_configuration/pptpd',
+        'mode' => '0755'
+    ),
+    'network-peerdns-event'=> array(
+        'target' => '/var/clearos/events/network_peerdns/pptpd',
+        'mode' => '0755'
+    ),
+    'samba-configuration-event'=> array(
+        'target' => '/var/clearos/events/samba_configuration/pptpd',
+        'mode' => '0755'
     ),
 );
 

@@ -1,7 +1,7 @@
 
 Name: app-pptpd
 Epoch: 1
-Version: 1.5.5
+Version: 1.6.0
 Release: 1%{dist}
 Summary: PPTP Server
 License: GPLv3
@@ -24,10 +24,10 @@ Summary: PPTP Server - Core
 License: LGPLv3
 Group: ClearOS/Libraries
 Requires: app-base-core
+Requires: app-events-core
 Requires: app-network-core >= 1:1.4.5
 Requires: app-pptpd-plugin-core
 Requires: app-samba-common-core
-Requires: csplugin-filewatch
 Requires: pptpd >= 1.3.4
 Requires: ppp >= 2.4.5-5.v6
 Requires: system-windows-driver
@@ -49,9 +49,11 @@ install -d -m 0755 %{buildroot}/etc/clearos/pptpd.d
 install -d -m 0755 %{buildroot}/var/clearos/pptpd
 install -d -m 0755 %{buildroot}/var/clearos/pptpd/backup
 install -D -m 0644 packaging/authorize %{buildroot}/etc/clearos/pptpd.d/authorize
-install -D -m 0644 packaging/filewatch-pptpd-network.conf %{buildroot}/etc/clearsync.d/filewatch-pptpd-network.conf
+install -D -m 0755 packaging/network-configuration-event %{buildroot}/var/clearos/events/network_configuration/pptpd
+install -D -m 0755 packaging/network-peerdns-event %{buildroot}/var/clearos/events/network_peerdns/pptpd
 install -D -m 0644 packaging/pptpd.conf %{buildroot}/etc/clearos/pptpd.conf
 install -D -m 0644 packaging/pptpd.php %{buildroot}/var/clearos/base/daemon/pptpd.php
+install -D -m 0755 packaging/samba-configuration-event %{buildroot}/var/clearos/events/samba_configuration/pptpd
 
 %post
 logger -p local6.notice -t installer 'app-pptpd - installing'
@@ -97,6 +99,8 @@ exit 0
 /usr/clearos/apps/pptpd/language
 /usr/clearos/apps/pptpd/libraries
 %config(noreplace) /etc/clearos/pptpd.d/authorize
-/etc/clearsync.d/filewatch-pptpd-network.conf
+/var/clearos/events/network_configuration/pptpd
+/var/clearos/events/network_peerdns/pptpd
 %config(noreplace) /etc/clearos/pptpd.conf
 /var/clearos/base/daemon/pptpd.php
+/var/clearos/events/samba_configuration/pptpd
