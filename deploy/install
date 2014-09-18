@@ -25,15 +25,20 @@ cp /usr/clearos/apps/pptpd/deploy/ppp-pam /etc/pam.d/ppp
 #-----------------------
 
 logger -p local6.notice -t installer "app-pptpd-core - enabling PPTP server"
-chkconfig pptpd on
+chkconfig pptpd on >/dev/null 2>&1
 
 logger -p local6.notice -t installer "app-pptpd-core - starting PPTP server"
-service pptpd start
+service pptpd start >/dev/null 2>&1
 
 if [ -x /etc/init.d/winbind ]; then
     logger -p local6.notice -t installer "app-pptpd-core - enabling Winbind server"
-    chkconfig winbind on
+    chkconfig winbind on >/dev/null 2>&1
 
     logger -p local6.notice -t installer "app-pptpd-core - starting Winbind server"
-    service winbind start
+    service winbind start >/dev/null 2>&1
 fi
+
+# Run auto-configuration
+#-----------------------
+
+/var/clearos/events/network_configuration/pptpd >/dev/null 2>&1

@@ -1,7 +1,7 @@
 
 Name: app-pptpd
 Epoch: 1
-Version: 1.6.5
+Version: 2.0.1
 Release: 1%{dist}
 Summary: PPTP Server
 License: GPLv3
@@ -28,8 +28,8 @@ Requires: app-events-core
 Requires: app-network-core >= 1:1.4.5
 Requires: app-pptpd-plugin-core
 Requires: app-samba-common-core
-Requires: pptpd >= 1.3.4
-Requires: ppp >= 2.4.5-5.v6
+Requires: pptpd >= 1.4.0
+Requires: ppp >= 2.4.5-33
 Requires: system-windows-driver
 
 %description core
