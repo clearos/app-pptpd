@@ -60,11 +60,15 @@ if ($auto_configure) {
 // Auto configure help
 ///////////////////////////////////////////////////////////////////////////////
 
+$options['buttons'] = array(
+    anchor_custom('/app/pptpd/settings/disable_auto_configure', lang('base_disable_auto_configuration'))
+);
+
 if ($auto_configure) {
     echo infobox_highlight(
         lang('base_automatic_configuration_enabled'),
-        lang('pptpd_auto_configure_help') . '<br>' .
-        "<p align='center'>" . anchor_custom('/app/pptpd/settings/disable_auto_configure', lang('base_disable_auto_configuration')) . "</p>"
+        lang('pptpd_auto_configure_help'),
+        $options
     );
 }
 
