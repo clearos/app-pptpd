@@ -1,7 +1,7 @@
 
 Name: app-pptpd
 Epoch: 1
-Version: 2.1.6
+Version: 2.1.7
 Release: 1%{dist}
 Summary: PPTP Server
 License: GPLv3
@@ -30,7 +30,6 @@ Requires: app-pptpd-plugin-core
 Requires: app-samba-common-core
 Requires: pptpd >= 1.4.0
 Requires: ppp >= 2.4.5-33
-Requires: system-windows-driver
 
 %description core
 PPTP VPN allows users to connect to your network using a VPN client common to most operating systems.  PPTP is easy and useful for road warriors but is considered less secure than other technologies like OpenVPN.
