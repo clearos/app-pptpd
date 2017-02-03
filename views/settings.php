@@ -76,7 +76,7 @@ if ($auto_configure) {
 // Form
 ///////////////////////////////////////////////////////////////////////////////
 
-echo form_open('pptpd/settings');
+echo form_open('pptpd/settings/edit');
 echo form_header(lang('base_settings'));
 
 echo field_input('local_ip', $local_ip, lang('pptpd_local_ip_range'), $read_only);

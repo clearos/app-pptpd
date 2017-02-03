@@ -1,7 +1,7 @@
 
 Name: app-pptpd
 Epoch: 1
-Version: 2.1.7
+Version: 2.3.0
 Release: 1%{dist}
 Summary: PPTP Server
 License: GPLv3
