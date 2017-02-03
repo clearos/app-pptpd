@@ -137,6 +137,7 @@ class Settings extends ClearOS_Controller
                 $this->pptpd->reset(TRUE);
 
                 $this->page->set_status_updated();
+                redirect('/pptpd/settings');
             } catch (Exception $e) {
                 $this->page->view_exception($e);
                 return;
