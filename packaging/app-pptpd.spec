@@ -1,7 +1,7 @@
 
 Name: app-pptpd
 Epoch: 1
-Version: 2.3.1
+Version: 2.4.0
 Release: 1%{dist}
 Summary: PPTP Server
 License: GPLv3
@@ -25,7 +25,7 @@ License: LGPLv3
 Group: ClearOS/Libraries
 Requires: app-base-core
 Requires: app-events-core
-Requires: app-network-core >= 1:1.4.5
+Requires: app-network-core >= 1:2.4.2
 Requires: app-pptpd-plugin-core
 Requires: app-samba-common-core
 Requires: pptpd >= 1.4.0
@@ -90,6 +90,7 @@ exit 0
 %files core
 %defattr(-,root,root)
 %exclude /usr/clearos/apps/pptpd/packaging
+%exclude /usr/clearos/apps/pptpd/unify.json
 %dir /usr/clearos/apps/pptpd
 %dir /etc/clearos/pptpd.d
 %dir /var/clearos/pptpd

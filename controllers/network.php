@@ -7,7 +7,7 @@
  * @package    pptpd
  * @subpackage controllers
  * @author     ClearFoundation <developer@clearfoundation.com>
- * @copyright  2012 ClearFoundation
+ * @copyright  2012-2017 ClearFoundation
  * @license    http://www.gnu.org/copyleft/gpl.html GNU General Public License version 3 or later
  * @link       http://www.clearfoundation.com/docs/developer/apps/pptpd/
  */
@@ -53,7 +53,7 @@ require clearos_app_base('network') . '/controllers/network_check.php';
  * @package    pptpd
  * @subpackage controllers
  * @author     ClearFoundation <developer@clearfoundation.com>
- * @copyright  2012 ClearFoundation
+ * @copyright  2012-2017 ClearFoundation
  * @license    http://www.gnu.org/copyleft/gpl.html GNU General Public License version 3 or later
  * @link       http://www.clearfoundation.com/docs/developer/apps/pptpd/
  */
@@ -66,6 +66,10 @@ class Network extends Network_Check
 
     function __construct()
     {
-        parent::__construct('pptpd', 'PPTP');
+        $rules = [
+            [ 'name' => 'PPTP', 'protocol' => 'PPTP', 'port' => '-' ],
+        ];
+
+        parent::__construct('pptpd', $rules);
     }
 }

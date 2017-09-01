@@ -5,7 +5,7 @@
 /////////////////////////////////////////////////////////////////////////////
 
 $app['basename'] = 'pptpd';
-$app['version'] = '2.3.1';
+$app['version'] = '2.4.0';
 $app['release'] = '1';
 $app['vendor'] = 'ClearFoundation';
 $app['packager'] = 'ClearFoundation';
@@ -43,7 +43,7 @@ $app['requires'] = array(
 
 $app['core_requires'] = array(
     'app-events-core',
-    'app-network-core >= 1:1.4.5',
+    'app-network-core >= 1:2.4.2',
     'app-pptpd-plugin-core',
     'app-samba-common-core',
     'pptpd >= 1.4.0',
